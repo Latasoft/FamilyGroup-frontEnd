@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, output, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,6 +13,8 @@ export class PropertycardComponent {
   @Input() properties: any[] = [];
   @Input() isAdmin: boolean = false;
 
+  @Output() dropProp = new EventEmitter<string>();
+  @Output() activate = new EventEmitter<string>();
   @Output() edit = new EventEmitter<string>();
   @Output() delete = new EventEmitter<string>();
   constructor(private router: Router) {}
@@ -30,5 +32,13 @@ export class PropertycardComponent {
   // Método para emitir el evento de eliminación
   onDeleteProperty(_id: string) {
     this.delete.emit(_id);
+  }
+
+  onRestoreProperty(_id: string) {
+    this.activate.emit(_id);
+  }
+
+  onDropProperty(_id: string) {
+    this.dropProp.emit(_id);
   }
 }

@@ -25,6 +25,7 @@ export class PropertiesListComponent {
   totalPages: number = 1;
   isLoading: boolean = false;
   noResults: boolean = false; // Indica si no se encontraron resultados
+  
 
   private propertyService = inject(PropertyService);
   private route = inject(ActivatedRoute);

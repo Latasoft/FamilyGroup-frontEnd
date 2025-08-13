@@ -7,12 +7,13 @@
     </header>
   
     <app-propertycard
-    
       [properties]="properties"
       [isAdmin]="true"
       (edit)="onEdit($event)"
       (delete)="onDelete($event)"
-    ></app-propertycard>
+      (activate)="onActivate($event)"
+      (dropProp)="onDrop($any($event))"> <!-- Usando $any para evitar el error de tipo -->
+    </app-propertycard>
 
      <!-- Paginación -->
      <div class="flex justify-center mt-6">
@@ -23,4 +24,3 @@
     ></app-pagination>
     </div>
   </section>
-  

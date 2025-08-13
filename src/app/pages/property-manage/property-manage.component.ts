@@ -7,6 +7,8 @@ import { PropertyService } from '../../Services/property.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-property-manage',
@@ -53,6 +55,79 @@ export class PropertyManageComponent  {
     });
     
   }
+
+  onActivate(_id: string) {
+    this.propertyService.activateProperty(_id).subscribe({
+      next: (response) => {
+        this.presentToast(response.message, 'Notificación', 'success');
+      },
+      error: (err) => {
+        this.presentToast(err.message, 'Notificación', 'error');
+      }
+    });
+  }
+
+
+// Método para iniciar el proceso de eliminación
+onDrop(_id: string) {
+  // Primer paso: verificar si la propiedad está desactivada
+  this.propertyService.checkDropProperty(_id).subscribe({
+    next: (response) => {
+      // Si requiere confirmación (propiedad desactivada)
+      if (response.requireConfirmation) {
+        Swal.fire({
+          title: 'Confirmar eliminación',
+          html: response.message,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#3085d6',
+          confirmButtonText: 'Sí, eliminar',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Segundo paso: confirmar la eliminación
+            this.propertyService.confirmDropProperty(_id).subscribe({
+              next: () => {
+                Swal.fire(
+                  '¡Eliminada!',
+                  'Propiedad eliminada con éxito',
+                  'success'
+                );
+                // Refrescar la lista de propiedades
+                this.getProperties(this.currentPage, 10);
+              },
+              error: (error) => {
+                console.error('Error al eliminar propiedad:', error);
+                Swal.fire(
+                  'Error',
+                  'No se pudo eliminar la propiedad',
+                  'error'
+                );
+              }
+            });
+          }
+        });
+      }
+    },
+    error: (error) => {
+      // Si la propiedad está activa, mostrar mensaje de error
+      if (error.status === 400) {
+        Swal.fire(
+          'Acción requerida',
+          error.error.message || 'Debes desactivar la propiedad antes de eliminarla',
+          'warning'
+        );
+      } else {
+        Swal.fire(
+          'Error',
+          'Ocurrió un error al procesar la solicitud',
+          'error'
+        );
+      }
+    }
+  });
+}
 
   getProperties(page: number, limit: number) {
     this.propertyService.getAllPropertiesIcludeInactive(page, limit).subscribe(

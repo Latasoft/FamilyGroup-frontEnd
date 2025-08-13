@@ -53,9 +53,13 @@ export class PropertyService {
   }
   
 
-
+  //HttpParams para manejar los parámetros de paginación, y evitar contenido de paginación en URL, cuando no hay filtros
   getAllProperties(page: number, limit: number): Observable<any> {
-    return this.http.get<any>(`${this.API_URL}`);
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('limit', limit.toString());
+    
+    return this.http.get<any>(`${this.API_URL}`, { params });
   }
 
   getAllPropertiesIcludeInactive(page: number, limit: number): Observable<any> {
@@ -133,6 +137,27 @@ export class PropertyService {
   desactivateProperty(_id: string): Observable<any> {
     return this.http.patch(`${this.API_URL}/${_id}/desactivate`, {}); // Retorna el observable
   }
-  
+
+  activateProperty(_id: string): Observable<any> {
+    return this.http.patch(`${this.API_URL}/${_id}/activate`, {}); // Retorna el observable
+  }
+
+  // Método para verificar si se puede eliminar (paso 1)
+  checkDropProperty(_id: string): Observable<any> {
+    return this.http.delete(`${this.API_URL}/${_id}`); // Primera llamada sin confirmación
+  }
+
+  // Método para confirmar la eliminación (paso 2)
+  confirmDropProperty(_id: string): Observable<any> {
+    return this.http.delete(`${this.API_URL}/${_id}?confirm=true`); // Con confirmación
+  }
+
+  // Método original que puedes mantener como wrapper
+  dropProperty(_id: string, confirm: boolean = false): Observable<any> {
+    const url = confirm 
+      ? `${this.API_URL}/${_id}?confirm=true`
+      : `${this.API_URL}/${_id}`;
+    return this.http.delete(url);
+  }
 
 }
