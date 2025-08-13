@@ -1,0 +1,61 @@
+<section class="container mx-auto px-4">
+  <!-- Encabezado -->
+  <header class="flex justify-between items-center mb-8">
+    <h2 class="text-lg font-bold text-gray-800">Propiedades destacadas</h2>
+    <a [routerLink]="'/lista-propiedades'" class="text-sm font-semibold text-blue-600 hover:text-blue-800">
+      Ver todas las propiedades
+    </a>
+  </header>
+
+  <!-- Contenedor de las tarjetas -->
+  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <article [routerLink]="['/detalle-propiedad']" [queryParams]="{ _id: property._id }" *ngFor="let property of featuredProperties" class="border rounded-lg shadow-lg bg-white flex flex-col">
+      <!-- Imagen -->
+      <figure class="w-full h-[200px] overflow-hidden">
+        <img
+          [src]="property.foto_casa && property.foto_casa.length > 0 ? property.foto_casa[0].url : 'assets/images/default.jpg'"
+          [alt]="'Imagen de ' + property.nombre"
+          class="w-full h-full object-cover"
+        />
+      </figure>
+
+      <!-- Información de la propiedad -->
+      <div class="p-4 flex flex-col">
+        <h3 class="text-base font-bold text-gray-800 mb-2">{{ property.nombre }}</h3>
+        <p class="text-sm text-gray-600 mb-4">
+          <span class="material-icons text-gray-400 mr-1">Ubicación</span>
+          {{ property.comuna }}, {{ property.region }}
+        </p>
+        <p class="text-sm font-bold text-blue-600 mb-4">
+          {{ property.tipo_operacion === 'VENTA' ? 'Venta: ' : 'Arriendo: ' }}
+          {{ property.precio.moneda === 'UF' ? 'UF' : '$' }}  {{ formatPrice(property.precio) }}
+        </p>
+        <!-- Características -->
+        <div class="flex justify-between items-center text-sm text-gray-700">
+          <div class="flex items-center">
+            <span class="material-icons text-blue-500 mr-1">Habitaciones</span>
+            <span>{{ property.dormitorios || 0 }}</span>
+          </div>
+          <div class="flex items-center">
+            <span class="material-icons text-blue-500 mr-1">Baños</span>
+            <span>{{ property.banos || 0 }}</span>
+          </div>
+          <div class="flex items-center">
+            <span class="material-icons text-blue-500 mr-1"></span>
+            <span>{{ property.superficie }} m²</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Información del agente -->
+      <footer class="flex items-center p-4 border-t">
+        <img
+          [src]="property.agent?.foto_agente || 'assets/images/default-agent.jpg'"
+          alt="{{ property.agent?.nombre }}"
+          class="w-10 h-10 rounded-full mr-4"
+        />
+        <p class="text-sm font-medium text-gray-700">{{ property.agent?.nombre }}</p>
+      </footer>
+    </article>
+  </section>
+</section>

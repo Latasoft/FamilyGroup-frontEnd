@@ -1,0 +1,76 @@
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <ng-container *ngFor="let property of properties">
+    <article 
+      class="bg-white rounded-lg shadow-md p-4" 
+      [class.cursor-pointer]="!isAdmin"
+      (click)="!isAdmin ? navigateToDetail(property._id) : null">
+      <!-- Imagen de la propiedad -->
+      <figure class="w-full h-[200px] bg-gray-200 rounded-lg mb-4 overflow-hidden">
+        <img
+          *ngIf="property.foto_casa && property.foto_casa.length > 0; else noImage"
+          [src]="property.foto_casa.length > 0 ? property.foto_casa[0].url : 'assets/images/default.jpg'"
+          alt="{{ property.nombre }}"
+          class="w-full h-full object-cover"
+        />
+        <ng-template #noImage>
+          <div class="no-image-placeholder">
+            Imagen no disponible
+          </div>
+        </ng-template>
+      </figure>
+
+      <!-- Información de la propiedad -->
+      <header>
+        <h2 class="text-lg font-bold mb-2 text-center">{{ property.nombre }}</h2>
+      </header>
+      <p class="text-sm text-black font-bold flex items-end">
+        <img src="assets/images/location.svg" class="w-4 h-4 mr-3" alt="Location Icon" />{{ property.comuna }}
+      </p>
+      <section class="flex items-center gap-4 mt-4">
+        <!-- Icono de habitaciones -->
+        <div class="flex items-center justify-center relative">
+          <img
+            src="assets/images/king_bed.svg"
+            alt="Bed Icon"
+            class="w-6 h-6 mr-2"
+          />
+          <span
+            class="absolute top-0 right-0 transform translate-x-[50%] -translate-y-[50%] bg-[#1E2D5B] text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center text-[9px] p-2"
+          >
+            {{ property.dormitorios }}
+          </span>
+        </div>
+
+        <!-- Icono de baños -->
+        <div class="flex items-center justify-center relative">
+          <img
+            src="assets/images/shower.svg"
+            alt="Bathroom Icon"
+            class="w-6 h-6 mr-2"
+          />
+          <span
+            class="absolute top-0 right-0 transform translate-x-[50%] -translate-y-[50%] bg-[#1E2D5B] text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center text-[9px] p-2"
+          >
+            {{ property.banos }}
+          </span>
+        </div>
+
+        <!-- Área -->
+        <div class="flex items-center gap-1 text-sm">
+          <img
+            src="assets/images/drawing.svg"
+            alt="Area Icon"
+            class="w-6 h-6"
+          />
+          <span>{{ property.superficie }}</span>
+        </div>
+      </section>
+
+      <!-- Botones de administración - Solo visibles para admin -->
+      <footer *ngIf="isAdmin" class="flex justify-end gap-2 mt-3" (click)="$event.stopPropagation()">
+        <button (click)="onEditProperty(property._id)" class="text-blue-500">Editar</button>
+        <button (click)="onDeleteProperty(property._id)" class="text-red-500">Desactivar</button>
+      </footer>
+    </article>
+  </ng-container>
+</section>

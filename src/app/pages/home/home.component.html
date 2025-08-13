@@ -1,0 +1,195 @@
+<main class="flex-grow bg-gray-100">
+  <!-- Sección principal -->
+  <section class="relative bg-cover bg-center h-[600px] w-full flex flex-col justify-center items-center"
+    style="background-image: url('assets/images/principal.jpg');">
+    <!-- Capa oscura transparente -->
+    <span class="absolute inset-0 bg-black bg-opacity-50"></span>
+
+    <!-- Contenido principal -->
+    <section class="relative z-10 text-center text-white px-4 w-full">
+      <h1 class="text-3xl md:text-5xl font-knewave mb-6 drop-shadow-lg">
+        Te ayudamos a encontrar tu lugar ideal
+      </h1>
+
+      <div class="bg-white bg-opacity-90 p-4 rounded-full shadow-lg max-w-6xl mx-auto">
+        <div class="flex flex-wrap justify-center items-center gap-4">
+          <!-- Tipo de operación -->
+          <select [(ngModel)]="filters.tipo_operacion"
+            class="flex-1 min-w-[150px] bg-gray-100 text-black py-3 px-6 rounded-full shadow-md text-sm md:text-lg focus:outline-none">
+            <option value="">Tipo Operación</option>
+            <option value="VENTA">Venta</option>
+            <option value="ARRIENDO">Arriendo</option>
+          </select>
+
+          <!-- Tipo de propiedad -->
+          <select [(ngModel)]="filters.tipo_propiedad"
+            class="flex-1 min-w-[150px] bg-gray-100 text-black py-3 px-6 rounded-full shadow-md text-sm md:text-lg focus:outline-none">
+            <option value="">Tipo Propiedad</option>
+            <option value="CASA">Casa</option>
+            <option value="DEPARTAMENTO">Departamento</option>
+          </select>
+
+          <!-- Comuna -->
+          <select [(ngModel)]="filters.comuna"
+            class="flex-1 min-w-[150px] bg-gray-100 text-black py-3 px-6 rounded-full shadow-md text-sm md:text-lg focus:outline-none">
+            <option value="">Comuna</option>
+            <option value="Arica">Arica</option>
+            <option value="Iquique">Iquique</option>
+            <option value="La Serena">La Serena</option>
+          </select>
+
+          <!-- Botón para activar los filtros avanzados -->
+          <button (click)="toggleAdvancedFilters()"
+            class="flex justify-center items-center bg-gray-100 text-yellow-600 p-3 rounded-full shadow-md text-lg">
+            <img src="assets/images/sliders.svg"  alt="Advanced Filters" class="h-6 w-6" />
+          </button>
+
+          <!-- Botón de búsqueda -->
+          <button (click)="onSearch()"
+            class="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-full shadow-md text-sm md:text-lg transition">
+            Buscar
+          </button>
+        </div>
+      </div>
+
+      <!-- Filtros avanzados -->
+      <div class="overflow-hidden transition-all duration-500"
+        [ngClass]="{ 'h-auto opacity-100': showAdvancedFilters, 'h-0 opacity-0': !showAdvancedFilters }">
+        <div class="bg-white shadow-md p-6 mt-4 max-w-6xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Precio -->
+            <div>
+              
+              <div class="flex items-center gap-2">
+                <!-- Título -->
+                <label class="text-sm font-bold text-black mr-4">Precio</label>
+                
+                <!-- Pesos -->
+                <label class="flex items-center gap-1 text-sm font-medium text-gray-700 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="moneda"
+                    [(ngModel)]="filters.moneda"
+                    value="PESOS"
+                    class="hidden"
+                  />
+                  <span
+                    class="py-1 px-2 border rounded-md text-xs"
+                    [ngClass]="{
+                      'font-bold bg-blue-600 text-white': filters.moneda === 'PESOS',
+                      'bg-gray-100 text-black': filters.moneda !== 'PESOS'
+                    }"
+                  >
+                    $ Pesos
+                  </span>
+                </label>
+              
+                <!-- UF -->
+                <label class="flex items-center gap-1 text-sm font-medium text-gray-700 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="moneda"
+                    [(ngModel)]="filters.moneda"
+                    value="UF"
+                    class="hidden"
+                  />
+                  <span
+                    class="py-1 px-2 border rounded-md text-xs"
+                    [ngClass]="{
+                      'font-bold bg-blue-600 text-white': filters.moneda === 'UF',
+                      'bg-gray-100 text-black': filters.moneda !== 'UF'
+                    }"
+                  >
+                    UF
+                  </span>
+                </label>
+              </div>
+              
+              <!-- Campos de precio mínimo y máximo -->
+              <div class="flex gap-2">
+                <input
+                  [(ngModel)]="filters.precio_min"
+                  type="number"
+                  placeholder="Desde"
+                  class="w-full p-2 border rounded-md text-[#000000]"
+                />
+                <input
+                  [(ngModel)]="filters.precio_max"
+                  type="number"
+                  placeholder="Hasta"
+                  class="w-full p-2 border rounded-md text-[#000000]"
+                />
+              </div>
+            </div>
+            
+
+            <!-- Dormitorios -->
+            <div>
+              <label class="block text-sm font-bold mb-1 text-black">Dormitorios</label>
+              <select
+                [(ngModel)]="filters.dormitorios"
+                class="w-full p-2 border bg-white text-[#000000] rounded-md  focus:ring-2 focus:ring-blue-500 transition"
+                [ngModelOptions]="{ standalone: true }"
+              >
+                <option value="" selected>Seleccione</option>
+                <option class="hover:bg-[#2F72A9] focus:ring-[#2F72A9]" value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            
+            
+            <!-- Baños -->
+            <div>
+              <label class="block text-sm font-bold mb-1 text-black">Baños</label>
+              <select [(ngModel)]="filters.banos" [ngModelOptions]="{ standalone: true }" class="w-full p-2 border bg-white text-[#000000] rounded-md  focus:ring-2 focus:ring-blue-500 transition">
+                <option value="">Seleccione</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-4 mt-4 justify-center">
+            <!-- Amoblado -->
+            <label class="flex items-center text-[#000000] mb-2 gap-2">
+              Amoblado
+              <input type="checkbox" [(ngModel)]="filters.amoblado" />
+            </label>
+            
+            <!-- Piscina -->
+            <label class="flex items-center text-[#000000] mb-2 gap-2">
+              Piscina
+              <input type="checkbox" [(ngModel)]="filters.piscina" />
+            </label>
+            
+            <!-- Estacionamiento -->
+            <label class="flex items-center text-[#000000] mb-2 gap-2">
+              Estacionamiento
+              <input type="checkbox" [(ngModel)]="filters.estacionamiento" />
+            </label>
+          </div>          
+        </div>
+      </div>
+
+
+    </section>
+  </section>
+
+  <!-- Subcomponente de Categorías -->
+  <section class="py-2 bg-gray-50">
+    <app-categories></app-categories>
+  </section>
+
+  <!-- Subcomponente de Propiedades destacadas -->
+  <section class="py-8 bg-white">
+    <app-featured-properties></app-featured-properties>
+    <br /><br />
+    <app-services [title]="'Servicios Destacados'"></app-services>
+    <br>
+    <div>
+      <app-agent-card></app-agent-card>
+    </div>
+  </section>
+</main>

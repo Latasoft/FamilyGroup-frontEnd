@@ -1,0 +1,165 @@
+<section class="container mx-auto px-4 py-10">
+    <header class="text-center mb-6">
+      <h1 class="text-2xl font-bold">Gestión de Usuarios</h1>
+    </header>
+  
+  
+    <div class="flex justify-center items-center min-h-[500px] mb-10">
+      <form [formGroup]="userForm" class="max-w-lg bg-gray-100 p-6 rounded-lg shadow-md w-full">
+        <!-- Primer Nombre -->
+        <div class="mb-4">
+          <label for="primer_nombre" class="block text-sm font-medium text-gray-700">Primer Nombre:</label>
+          <input
+            id="primer_nombre"
+            type="text"
+            formControlName="primer_nombre"
+            class="mt-1 block w-full p-3 border border-gray-300 rounded-full shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base"
+            placeholder="Ingrese el primer nombre"
+            required
+          />
+        </div>
+  
+        <!-- Segundo Nombre -->
+        <div class="mb-4">
+          <label for="segundo_nombre" class="block text-sm font-medium text-gray-700">Segundo Nombre:</label>
+          <input
+            id="segundo_nombre"
+            type="text"
+            formControlName="segundo_nombre"
+            class="mt-1 block w-full p-3 border border-gray-300 rounded-full shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base"
+            placeholder="Ingrese el segundo nombre"
+          />
+        </div>
+  
+        <!-- Primer Apellido -->
+        <div class="mb-4">
+          <label for="apellido_paterno" class="block text-sm font-medium text-gray-700">Primer Apellido:</label>
+          <input
+            id="apellido_paterno"
+            type="text"
+            formControlName="apellido_paterno"
+            class="mt-1 block w-full p-3 border border-gray-300 rounded-full shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base"
+            placeholder="Ingrese el primer apellido"
+            required
+          />
+        </div>
+  
+        <!-- Segundo Apellido -->
+        <div class="mb-4">
+          <label for="apellido_materno" class="block text-sm font-medium text-gray-700">Segundo Apellido:</label>
+          <input
+            id="apellido_materno"
+            type="text"
+            formControlName="apellido_materno"
+            class="mt-1 block w-full p-3 border border-gray-300 rounded-full shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base"
+            placeholder="Ingrese el segundo apellido"
+            required
+          />
+        </div>
+  
+        <!-- RUT -->
+        <div class="mb-4">
+          <label for="rut" class="block text-sm font-medium text-gray-700">RUT:</label>
+          <input
+            id="rut"
+            type="text"
+            formControlName="rut"
+            class="mt-1 block w-full p-3 border border-gray-300 rounded-full shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base"
+            placeholder="Ingrese el RUT"
+            required
+          />
+        </div>
+  
+        <!-- Estado de Activación -->
+        <div class="mb-4 flex items-center">
+          <input
+            id="is_activated"
+            type="checkbox"
+            formControlName="is_activated"
+            class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+          />
+          <label for="is_activated" class="ml-2 text-sm font-medium text-gray-700">¿Activo?</label>
+        </div>
+  
+        <!-- Email -->
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            class="mt-1 block w-full p-3 border border-gray-300 rounded-full shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base"
+            placeholder="Ingrese el correo electrónico"
+            required
+          />
+        </div>
+  
+        <!-- Contraseña -->
+        <div *ngIf="!isEditMode" class="mb-4">
+          <label for="password" class="block text-sm font-medium text-gray-700">Contraseña:</label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            class="mt-1 block w-full p-3 border border-gray-300 rounded-full shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base"
+            placeholder="Ingrese la contraseña"
+            required
+          />
+        </div>
+        <!-- Cambiar contraseña -->
+      <div class="mb-4 flex items-center">
+        <input
+          id="changePassword"
+          type="checkbox"
+          (change)="togglePasswordField()"
+          class="mr-2"
+        />
+        <label for="changePassword" class="text-sm font-medium text-gray-700">Cambiar contraseña</label>
+      </div>
+  
+        <!-- Nueva Contraseña -->
+        <div  *ngIf="isEditMode &&  showPasswordField" class="mb-4">
+          <label for="newPassword" class="block text-sm font-medium text-gray-700">Nueva Contraseña (opcional):</label>
+          <input
+            id="newPassword"
+            type="password"
+            formControlName="newPassword"
+            class="mt-1 block w-full p-3 border border-gray-300 rounded-full shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base"
+            placeholder="Ingrese la nueva contraseña"
+          />
+        </div>
+  
+        <!-- Roles -->
+        <!-- Roles -->
+      <div class="mb-4">
+        <label for="rol_usuario" class="block text-sm font-medium text-gray-700">Rol:</label>
+        <select
+          id="rol_usuario"
+          formControlName="rol_usuario"
+          class="mt-1 block w-full p-3 border border-gray-300 rounded-full shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base"
+        >
+          <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+        </select>
+      </div>
+        <!-- Botones -->
+        <div class="flex justify-between mt-6">
+          <button
+            type="button"
+        
+            class="w-1/2 bg-[#1E2D5B] text-white py-3 px-4 rounded-full shadow-md hover:bg-blue-700"
+          >
+            {{ isEditMode ? 'Actualizar Usuario' : 'Crear Usuario' }}
+          </button>
+          <button
+            *ngIf="isEditMode"
+            type="button"
+            (click)="desactivateUser()"
+            class="w-1/2 bg-red-600 text-white py-3 px-4 rounded-full shadow-md hover:bg-red-700 ml-4"
+          >
+            Desactivar Usuario
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+  

@@ -1,0 +1,43 @@
+<section class="container mx-auto px-4 py-8">
+    <!-- Título Principal -->
+    <header class="text-left mb-6">
+      <h2 class="text-[16px] font-bold mb-2">Contáctanos</h2>
+    </header>
+  
+    <!-- Grid de 2 Columnas -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Columna 1: Formulario -->
+      <div class="justify-self-end w-full max-w-lg">
+        <form [formGroup]="contactForm" (ngSubmit)="submit()" class="bg-gray-100 p-6 rounded-lg shadow-md w-full">
+          <!-- Nombre -->
+          <div class="mb-4">
+            <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
+            <input type="text" id="name" name="name" formControlName="name" class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+          </div>
+          <!-- Email -->
+          <div class="mb-4">
+            <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+            <input type="email" id="email" name="email" formControlName="email" class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+          </div>
+          <!-- Mensaje -->
+          <div class="mb-4">
+            <label for="message" class="block text-sm font-medium text-gray-700">Mensaje</label>
+            <textarea formControlName="message" id="message" name="message" rows="4" class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
+          </div>
+          <!-- Botón Enviar -->
+          <button type="submit" class="w-full bg-[#1A244B] text-white py-2 px-4 rounded-md shadow-md hover:bg-blue-700">Enviar</button>
+        </form>
+      </div>
+  
+      <!-- Columna 2: Datos de Contacto -->
+      <div class="flex flex-col justify-self-auto">
+        <h3 class="text-lg font-bold mb-4 text-left">Datos de Contacto</h3>
+        <ul class="text-sm text-white-600 space-y-4 text-left">
+          <li><strong>Ubicación:</strong> Ubicación: Manuel Bulnes 173, Iquique, Región de Tarapacá</li>
+          <li><strong>Teléfono:</strong> +56 9 9518 1001</li>
+          <li><strong>Email:</strong> familygroupgestioninmobiliaria&#64;gmail.com</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  

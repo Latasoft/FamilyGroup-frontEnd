@@ -1,0 +1,41 @@
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto my-14">
+  <!-- Categoría 1 -->
+  <a [routerLink]="['/lista-propiedades']" [queryParams]="{ tipo_operacion: 'VENTA' }" class="relative group">
+    <div class="aspect-w-1 aspect-h-1 flex justify-center items-center">
+      <img src="assets/images/ventas.jpg" alt="Ventas" class="w-3/4 h-full object-cover rounded-md">
+    </div>
+    <div class="absolute inset-0 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+      <h2 class="text-white text-sm font-bold">Ventas</h2>
+    </div>
+  </a>
+
+  <!-- Categoría 2 -->
+  <a [routerLink]="['/lista-propiedades']" [queryParams]="{ tipo_operacion: 'ARRIENDO_MENSUAL' }" class="relative group">
+    <div class="aspect-w-1 aspect-h-1 flex justify-center items-center">
+      <img src="assets/images/arriendo-mensual.jpg" alt="Arriendo mensual" class="w-3/4 h-full object-cover rounded-md">
+    </div>
+    <div class="absolute inset-0 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+      <h2 class="text-white text-sm font-bold">Arriendo mensual</h2>
+    </div>
+  </a>
+
+  <!-- Categoría 3 -->
+  <a [routerLink]="['/lista-propiedades']" [queryParams]="{ tipo_operacion: 'ARRIENDO_DIARIO' }" class="relative group">
+    <div class="aspect-w-1 aspect-h-1 flex justify-center items-center">
+      <img src="assets/images/arriendo-diario.jpg" alt="Arriendo diario" class="w-3/4 h-full object-cover rounded-md">
+    </div>
+    <div class="absolute inset-0 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+      <h2 class="text-white text-sm font-bold">Arriendo diario</h2>
+    </div>
+  </a>
+
+  <!-- Categoría 4 -->
+  <a [routerLink]="['/lista-propiedades']" [queryParams]="{ tipo_operacion: 'PARCELAS_RURALES' }" class="relative group">
+    <div class="aspect-w-1 aspect-h-1 flex justify-center items-center">
+      <img src="assets/images/parcelas-rurales.jpg" alt="Parcelas rurales" class="w-3/4 h-full object-cover rounded-md">
+    </div>
+    <div class="absolute inset-0 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+      <h2 class="text-white text-sm font-bold">Parcelas rurales</h2>
+    </div>
+  </a>
+</div>

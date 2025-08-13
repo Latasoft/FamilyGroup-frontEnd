@@ -1,0 +1,78 @@
+<header class="w-full">
+  <!-- Barra superior -->
+  <div class="w-full bg-customBlue text-black py-2 px-4 flex flex-wrap justify-between items-center text-xs md:text-sm">
+    <!-- Información izquierda -->
+<div class="flex flex-col sm:flex-row sm:flex-wrap items-center gap-2 sm:gap-4 text-center sm:text-left">
+  <!-- Ubicación -->
+  <a 
+    href="#" 
+    class="flex items-center gap-2 sm:gap-1 hover:underline text-sm sm:text-base">
+    <span>📍</span>
+    <span>Ubicación: Manuel Bulnes 173, Iquique Región de Tarapaca</span>
+  </a>
+  
+  <!-- Email -->
+  <a 
+    href="mailto:familygroupgestioninmobiliaria@gmail.com" 
+    class="flex items-center gap-2 sm:gap-1 hover:underline text-sm sm:text-base">
+    <span>📧</span>
+    <span>familygroupgestioninmobiliaria&#64;gmail.com</span>
+  </a>
+  
+  <!-- Teléfono -->
+  <a 
+    href="tel:+56995181001" 
+    class="flex items-center gap-2 sm:gap-1 hover:underline text-sm sm:text-base">
+    <span>📞</span>
+    <span>+56 9 9518 1001</span>
+  </a>
+</div>
+
+    <!-- Información derecha -->
+    <div class="mt-2 md:mt-0">
+      <a href="https://instagram.com" target="_blank" class="whitespace-nowrap">📸 Instagram</a>
+    </div>
+    <!-- Botón de login o logout -->
+    <div>
+      <ng-container *ngIf="rolUsuario; else loginOption">
+        <button (click)="logout()" class="text-red-500 whitespace-nowrap">
+          Salir
+        </button>
+      </ng-container>
+      <ng-template #loginOption>
+        <a [routerLink]="'/login'" class="whitespace-nowrap">Ir a login</a>
+      </ng-template>
+    </div>
+  </div>
+
+  <!-- Contenido principal del header -->
+  <div class="w-full bg-[#2F72A9] py-4 px-4 text-white">
+    <!-- Menú horizontal para todas las pantallas -->
+    <div class="flex justify-between items-center flex-wrap gap-4">
+      <!-- Logo -->
+      <div>
+        <img src="assets/images/LogoInmobiliaria.png" alt="Logo"
+        class="w-auto h-auto max-w-full max-h-full object-contain rounded-lg shadow-lg">
+      </div>
+
+      <!-- Opciones del menú -->
+      <nav *ngIf="rolUsuario !== 'ADMINISTRADOR'; else adminMenu" class="flex flex-wrap gap-4 text-sm">
+        <a [routerLink]="'/home'">Inicio</a>
+        <a [routerLink]="'/lista-propiedades'">Propiedades</a>
+        <a [routerLink]="'/quienes-somos'" class="whitespace-nowrap">Quienes Somos</a>
+        <a [routerLink]="'/servicios'">Servicios</a>
+        <a [routerLink]="'/contacto'">Contáctanos</a>
+      </nav>
+      
+      <ng-template #adminMenu>
+        <nav class="flex flex-wrap gap-4 text-sm">
+          <!-- Opciones adicionales para Administrador -->
+          <a [routerLink]="'/gestion-propiedades'">Gestión Propiedades</a>
+          <a [routerLink]="'/gestion-agentes'">Corredores</a>
+          <a [routerLink]="'/gestion-usuarios'">Usuarios</a>
+        </nav>
+      </ng-template>
+      
+    </div>
+  </div>
+</header>

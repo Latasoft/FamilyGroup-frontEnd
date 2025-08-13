@@ -1,0 +1,26 @@
+<div
+  *ngIf="isVisible"
+  class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+  <div class="bg-white rounded-lg shadow-lg w-11/12 max-w-md p-6 relative">
+    <!-- Título -->
+    <h2 class="text-lg text-center font-semibold text-gray-800 mb-4">{{ title }}</h2>
+
+    <!-- Contenido -->
+    <p class="text-gray-600 mb-6">{{ message }}</p>
+
+    <!-- Botones -->
+    <div class="flex justify-end space-x-4">
+      <button
+        *ngIf="cancelText"
+        class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded text-gray-800 transition"
+        (click)="closeModal()">
+        {{ cancelText }}
+      </button> 
+      <button
+        class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded transition"
+        (click)="confirmAction()">
+        {{ confirmText }}
+      </button>
+    </div>
+  </div>
+</div>

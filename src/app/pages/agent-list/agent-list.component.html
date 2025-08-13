@@ -1,0 +1,53 @@
+<section class="container mx-auto px-4 py-8">
+    <header class="mb-6 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Listado de Agentes</h1>
+      <button [routerLink]="'/agentes'" class="bg-gray-200 px-4 py-2 rounded-md shadow-md hover:bg-gray-300">
+        Agregar Agente
+      </button>
+    </header>
+  
+
+    <div class="container mx-auto px-4 py-6">
+      <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="py-2 px-4 border-b">Nombre</th>
+            <th class="py-2 px-4 border-b">Rut</th>
+            <th class="py-2 px-4 border-b">Teléfono</th>
+            <th class="py-2 px-4 border-b">Email</th>
+            <th class="py-2 px-4 border-b">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let agent of agents"
+            class="hover:bg-gray-50"
+          >
+            <td class="py-2 px-4 border-b text-center">{{ agent.nombre }} {{ agent.apellido }}</td>
+            <td class="py-2 px-4 border-b text-center">{{agent.rut_agente}}</td>
+            <td class="py-2 px-4 border-b text-center">{{ agent.telefono_agente }}</td>
+            <td class="py-2 px-4 border-b text-center">{{ agent.email_agente }}</td>
+            <td class="py-2 px-4 border-b text-center">
+              <button
+                class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-200 shadow-sm"
+                (click)="handleAction(agent._id)"
+              >
+                Acción
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    
+     <!-- Paginación -->
+     <div class="flex justify-center mt-6">
+      <app-pagination
+      [currentPage]="currentPage"
+      [totalPages]="totalPages"
+      (pageChange)="onPageChange($event)"
+    ></app-pagination>
+    </div>
+  </section>
+  

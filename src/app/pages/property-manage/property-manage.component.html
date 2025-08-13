@@ -1,0 +1,26 @@
+<section class="container mx-auto px-4 py-8">
+    <header class="mb-6 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Listado de propiedades</h1>
+      <button [routerLink]="'/propiedades'" class="bg-gray-200 px-4 py-2 rounded-md shadow-md hover:bg-gray-300">
+        Agregar Propiedad
+      </button>
+    </header>
+  
+    <app-propertycard
+    
+      [properties]="properties"
+      [isAdmin]="true"
+      (edit)="onEdit($event)"
+      (delete)="onDelete($event)"
+    ></app-propertycard>
+
+     <!-- Paginación -->
+     <div class="flex justify-center mt-6">
+      <app-pagination
+      [currentPage]="currentPage"
+      [totalPages]="totalPages"
+      (pageChange)="onPageChange($event)"
+    ></app-pagination>
+    </div>
+  </section>
+  

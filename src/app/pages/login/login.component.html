@@ -1,0 +1,44 @@
+<section class="container mx-auto px-4 py-10">
+    <header class="text-center mb-6">
+      <h1 class="text-2x1 font-bold">Ingreso Administración</h1>
+    </header>
+  
+    <img src="assets/images/logoFamily.jpg" class="mx-auto w-[70px] h-[70px] object-contain mb-2 rounded-full" alt="">
+  
+    <div class="flex justify-center items-center min-h-[400px] mb-10">
+      <form [formGroup]="loginForm" (ngSubmit)="submit()" class="max-w-md mx-auto bg-gray-100 p-6 rounded-lg shadow-md">
+        <!-- Campo Usuario -->
+        <div class="mb-4">
+          <input
+            type="text"
+            formControlName="email"
+            id="email"
+            required
+            class="mt-1 block w-full p-4 border border-gray-300 rounded-full shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg"
+            placeholder="Ingresa tu usuario"
+          />
+        </div>
+  
+        <!-- Campo Contraseña -->
+        <div class="mb-4">
+          <input
+            type="password"
+            formControlName="password"
+            id="password"
+            required
+            class="mt-1 block w-full p-4 border border-gray-300 rounded-full shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg"
+            placeholder="Ingresa tu contraseña"
+            aria-describedby="password-help"
+          />
+        </div>
+  
+        <div class="flex justify-center">
+          <!-- Botón Enviar -->
+          <button type="submit" class="w-2/4 bg-[#1E2D5B] text-white py-3 px-4 rounded-full shadow-md hover:bg-blue-700">
+            Ingresar
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+  

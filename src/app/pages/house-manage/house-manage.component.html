@@ -1,0 +1,227 @@
+<section class="container mx-auto px-4 py-10">
+    <!-- Encabezado -->
+    <header class="text-center mb-6">
+        <h1 class="text-2xl font-bold text-gray-800">
+            {{ isEditMode ? 'Actualizar Propiedad' : 'Registrar Propiedad' }}
+        </h1>
+    </header>
+
+    <!-- Contenedor del formulario -->
+    <div class="flex justify-center items-center min-h-[100px]">
+        <form  class="max-w-4xl mx-auto bg-gray-100 p-8 rounded-lg shadow-lg"
+            [formGroup]="houseForm">
+            <div class="grid grid-cols-2 gap-4">
+                <!-- Campo Nombre -->
+                <div class="mb-4">
+                    <label for="nombre" class="block text-sm font-medium text-gray-700 mb-2">Nombre de la
+                        propiedad</label>
+                    <input id="nombre" type="text" formControlName="nombre" placeholder="Ingrese nombre"
+                        class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                </div>
+
+                <!-- Campo Dirección -->
+                <div class="mb-4">
+                    <label for="direccion" class="block text-sm font-medium text-gray-700 mb-2">Dirección</label>
+                    <input id="direccion" type="text" formControlName="direccion" placeholder="Ingrese dirección"
+                        class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                </div>
+
+                <!-- Campo Descripción -->
+                <div class="mb-4 col-span-2">
+                    <label for="descripcion" class="block text-sm font-medium text-gray-700 mb-2">Descripción</label>
+                    <textarea id="descripcion" formControlName="descripcion" placeholder="Ingrese descripción"
+                        class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
+                </div>
+
+                <!-- Región -->
+                <div class="mb-4">
+                    <label for="region" class="block text-sm font-medium text-gray-700 mb-2">Región</label>
+                    <input id="region" type="text" formControlName="region" placeholder="Ingrese región"
+                        class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                </div>
+
+                <!-- Comuna -->
+                <div class="mb-4">
+                    <label for="comuna" class="block text-sm font-medium text-gray-700 mb-2">Comuna</label>
+                    <input id="comuna" type="text" formControlName="comuna" placeholder="Ingrese comuna"
+                        class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                </div>
+
+                <!-- Campo Dormitorios -->
+                <div class="mb-4">
+                    <label for="dormitorios" class="block text-sm font-medium text-gray-700 mb-2">Dormitorios</label>
+                    <input id="dormitorios" type="number" formControlName="dormitorios"
+                        placeholder="Ingrese número de dormitorios"
+                        class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                </div>
+
+                <!-- Campo Baños -->
+                <div class="mb-4">
+                    <label for="banos" class="block text-sm font-medium text-gray-700 mb-2">Baños</label>
+                    <input id="banos" type="number" formControlName="banos" placeholder="Ingrese número de baños"
+                        class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                </div>
+
+                <!-- Precio -->
+                <div class="mb-4 col-span-2">
+                    <label for="precio" class="block text-sm font-medium text-gray-700 mb-2">Precio</label>
+                    <div class="flex gap-4">
+                        <input id="precio-valor" type="number" formControlName="precio_valor"
+                            placeholder="Ingrese valor"
+                            class="block w-1/2 p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                        <select id="precio-moneda" formControlName="precio_moneda"
+                            class="block w-1/2 p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <option value="">Seleccione moneda</option>
+                            <option value="CLP">CLP</option>
+                            <option value="UF">UF</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Campo Superficie -->
+                <div class="mb-4">
+                    <label for="superficie" class="block text-sm font-medium text-gray-700 mb-2">Superficie</label>
+                    <input id="superficie" type="number" formControlName="superficie"
+                        placeholder="Ingrese superficie en m²"
+                        class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                </div>
+
+                <!-- Tipo de Propiedad -->
+                <div class="mb-4">
+                    <label for="tipo_propiedad" class="block text-sm font-medium text-gray-700 mb-2">Tipo de
+                        Propiedad</label>
+                    <select id="tipo_propiedad" formControlName="tipo_propiedad"
+                        class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <option value="CASA">Casa</option>
+                        <option value="DEPARTAMENTO">Departamento</option>
+                        <option value="LOCAL COMERCIAL">Local Comercial</option>
+                        <option value="TERRENO">Terreno</option>
+                    </select>
+                </div>
+
+                <!-- Tipo de Operación -->
+                <div class="mb-4">
+                    <label for="tipo_operacion" class="block text-sm font-medium text-gray-700 mb-2">Tipo de
+                        Operación</label>
+                    <select id="tipo_operacion" formControlName="tipo_operacion"
+                        class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <option value="VENTA">Venta</option>
+                        <option value="ARRIENDO">Arriendo</option>
+                        <option value="ARRIENDO_DIARIO">Arriendo Diario</option>
+                    </select>
+                </div>
+
+                <!-- Agente -->
+                <div class="mb-4">
+                    <label for="agent" class="block text-sm font-medium text-gray-700 mb-2">Agente encargado</label>
+                    <select id="agent" formControlName="agent"
+                        class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <option *ngFor="let agent of agents" [value]="agent._id">{{ agent.nombre }}</option>
+                    </select>
+                </div>
+                 <!-- Checkbox Propiedad Destacada -->
+                 <div class="mb-4 col-span-2">
+                    <div class="flex items-center">
+                        <input
+                            id="propiedad_destacada"
+                            type="checkbox"
+                            formControlName="propiedad_destacada"
+                            class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        />
+                        <label for="propiedad_destacada" class="ml-2 text-sm font-medium text-gray-700">
+                            ¿Destacar esta propiedad?
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Checkbox Propiedad Destacada -->
+                <div class="mb-4 col-span-2">
+                    <div class="flex items-center">
+                        <input
+                            id="is_activated"
+                            type="checkbox"
+                            formControlName="is_activated"
+                            class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        />
+                        <label for="is_activated" class="ml-2 text-sm font-medium text-gray-700">
+                            ¿Propiedad Activa?
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Checkbox Propiedad Destacada -->
+                <div class="mb-4 col-span-2">
+                    <div class="flex items-center">
+                        <input
+                            id="mostrar_propiedad"
+                            type="checkbox"
+                            formControlName="mostrar_propiedad"
+                            class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        />
+                        <label for="is_activated" class="ml-2 text-sm font-medium text-gray-700">
+                            ¿Mostrar Propiedad destacada?
+                        </label>
+                    </div>
+                </div>
+
+
+                <!-- Detalles Adicionales -->
+                <div class="mb-4 col-span-2">
+                    <label for="detalles_adicionales" class="block text-sm font-medium text-gray-700 mb-2">Detalles
+                        Adicionales</label>
+                    <textarea id="detalles_adicionales" formControlName="detalles_adicionales"
+                        placeholder="Ingrese detalles adicionales"
+                        class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
+                </div>
+
+                <!-- Detalles Adicionales -->
+                <div class="mb-4 col-span-2">
+                    <label for="detalles_destacados" class="block text-sm font-medium text-gray-700 mb-2">Detalles
+                        destacados</label>
+                    <textarea id="detalles_destacados" formControlName="detalles_destacados"
+                        placeholder="Ingrese detalles detalles destacados"
+                        class="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
+                </div>
+                <!-- Subir Imagen -->
+                <div class="mb-4 col-span-2">
+                    <label for="foto_casa" class="block text-sm font-medium text-gray-700 mb-2">Subir Imagen</label>
+                    <input id="foto_casa" type="file" multiple formControlName="foto_casa"
+                        (change)="onFileChange($event)"
+                        class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                        accept="image/png, image/jpeg" />
+
+                    <!-- Texto para abrir el modal -->
+                    <div *ngIf="existFiles && existFiles.length > 0" class="mt-4 text-center">
+                        <p class="text-blue-600 cursor-pointer hover:underline" (click)="openSlider()">
+                            Ver imágenes cargadas
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Modal para mostrar el slider -->
+                <div *ngIf="isModalOpen"
+                    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                    <div class="bg-white rounded-lg shadow-lg w-full max-w-4xl relative p-6">
+                        <!-- Botón para cerrar el modal -->
+                        <button class="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
+                            (click)="closeSlider()">
+                            &#10005;
+                        </button>
+
+                        <!-- Slider de imágenes -->
+                        <app-slaider [images]="existFiles"></app-slaider>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón de envío -->
+            <button type="button"
+            (click)="onSubmit()"
+                class="w-full py-3 px-6 bg-[#1E2D5B] text-white rounded-md shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                {{ isEditMode ? 'Actualizar' : 'Registrar' }}
+            </button>
+        </form>
+    </div>
+
+
+</section>

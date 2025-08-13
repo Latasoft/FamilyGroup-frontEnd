@@ -1,0 +1,44 @@
+<section class="py-12 bg-blue-400 w-full" >
+    <h2 class="text-4xl font-bold text-center text-white mb-8">Nuestro Equipo</h2>
+  
+    <swiper-container
+      [slides-per-view]="3"
+      [space-between]="30"
+      [navigation]="true"
+      [pagination]="{ clickable: true }"
+      [breakpoints]="breakpoints"
+      class="swiper-container max-w-6xl mx-auto"
+    >
+      <!-- Iteración dinámica de agentes -->
+      <swiper-slide *ngFor="let agent of agents" class="p-4">
+        <article class="bg-white rounded-lg shadow-md p-6 text-center max-w-[340px] mx-auto">
+          <!-- Foto del agente -->
+          <div class="flex justify-center items-center w-32 h-32 rounded-full overflow-hidden mx-auto mb-4">
+            <img
+              [src]="agent.foto_agente"
+              alt="{{ agent.nombre }}"
+              class="object-cover w-full h-full"
+            />
+          </div>
+  
+          <!-- Información del agente -->
+          <header>
+            <h3 class="text-lg font-bold text-gray-800">{{ agent.nombre }} {{ agent.apellido }}</h3>
+            <p class="text-sm text-gray-500">{{ agent.titulo_agente }}</p>
+          </header>
+  
+          <!-- Contacto del agente -->
+          <address class="text-sm not-italic mt-4">
+            <p class="flex items-center justify-center mb-1 text-gray-700">
+              <span class="material-icons mr-2 text-yellow-500">Correo</span>
+              <a href="mailto:{{ agent.email_agente }}" class="hover:underline">{{ agent.email_agente }}</a>
+            </p>
+            <p class="flex items-center justify-center text-gray-700">
+              <span class="material-icons mr-2 text-yellow-500">Telefono</span>
+              <a href="tel:{{ agent.telefono_agente }}" class="hover:underline">{{ agent.telefono_agente }}</a>
+            </p>
+          </address>
+        </article>
+      </swiper-slide>
+    </swiper-container>
+  </section>

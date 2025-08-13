@@ -1,0 +1,75 @@
+<footer class="w-full bg-[#1A244B] text-white py-4 overflow-hidden">
+  <div class="max-w-[1200px] mx-auto flex flex-wrap justify-between items-start gap-y-6">
+    <!-- Columna 1: Foto -->
+    <div
+      class="w-full sm:w-1/4 flex justify-center sm:justify-center items-center py-6 sm:pr-10"
+    >
+      <div
+        class="rounded-full overflow-hidden border-4 border-gray-300 shadow-md mx-auto"
+        [ngClass]="{
+          'w-[80px] h-[80px]': screenSize === 'small',
+          'w-[120px] h-[120px]': screenSize === 'medium',
+          'w-[150px] h-[150px]': screenSize === 'large'
+        }"
+      >
+        <img 
+          src="assets/images/logoFamily.jpg" 
+          alt="Foto del logo" 
+          class="w-full h-full object-cover">
+      </div>
+    </div>
+
+    <!-- Columna 2: Menú -->
+    <div
+      class="w-full sm:w-1/4 pl-4 sm:pl-8 text-left"
+    >
+      <h2 class="text-md font-bold flex items-start">Menú</h2>
+      <ul class="mt-1 space-y-1 ">
+        <li><a [routerLink]="'/home'" class="hover:text-blue-500 flex items-start">Inicio</a></li>
+        <li><a [routerLink]="'/lista-propiedades'" class="hover:text-blue-500 flex items-start">Propiedades</a></li>
+        <li><a [routerLink]="'/quienes-somos'" class="hover:text-blue-500 whitespace-nowrap flex items-start">Quiénes Somos</a></li>
+        <li><a [routerLink]="'/servicios'" class="hover:text-blue-500 flex items-start">Servicios</a></li>
+        <li><a [routerLink]="'/contacto'" class="hover:text-blue-500 flex items-start">Contáctanos</a></li>
+      </ul>
+    </div>
+
+    <!-- Columna 3: Contacto -->
+    <div
+      class="w-full sm:w-1/2 pl-4 sm:pl-8 text-left"
+    >
+      <h2 class="text-lg font-bold flex items-start">Contacto</h2>
+      <ul class="mt-2 space-y-2 text-sm sm:text-base">
+        <li>
+          <a href="#" class="hover:text-blue-500 flex items-start">
+            <span>📍</span>
+            <span class="ml-2">Ubicación: Manuel Bulnes 173, Iquique, Región de Tarapacá</span>
+          </a>
+        </li>
+        <li>
+          <a href="mailto:familygroupgestioninmobiliaria@gmail.com" class="hover:text-blue-500 flex items-start">
+            <span>📧</span>
+            <span class="ml-2">familygroupgestioninmobiliaria&#64;gmail.com</span>
+          </a>
+        </li>
+        <li>
+          <a href="tel:+56995181001" class="hover:text-blue-500 flex items-start">
+            <span>📞</span>
+            <span class="ml-2">+56 9 9518 1001</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Línea horizontal -->
+  <div class="mt-4">
+    <hr class="border-t-2 border-white w-[90%] mx-auto">
+  </div>
+
+   <!-- Texto debajo de la línea -->
+   <div class="mt-2 relative">
+    <div class="absolute right-9 md:right-8 lg:right-16 top-[-4px] lg:bottom-2 bottom-2">
+      <p class="text-xs md:text-sm lg:text-base">© 2024 Family Group</p>
+    </div>
+  </div>
+</footer>

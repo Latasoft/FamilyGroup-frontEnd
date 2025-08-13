@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Evitar desplazamientos laterales */
+  }
+  
+
+
+  .toast-error {
+    background-color: #dc3545 !important; /* Rojo de estilo "danger" */
+    color: white !important;             /* Texto blanco */
+    font-weight: bold;                   /* Texto en negrita */
+    border-radius: 8px;                  /* Bordes redondeados */
+  }
+  
+  .toast-top-center {
+    top: 20px !important;                /* Espaciado desde la parte superior */
+    left: 50%;
+    transform: translateX(-50%);         /* Centrar horizontalmente */
+  }
+  
+  .toast-message {
+    font-size: 14px;                     /* Tamaño del mensaje */
+  }
+  
+  .toast-title {
+    font-size: 16px;                     /* Tamaño del título */
+  }
+    
+  .toast-success {
+    background-color: #28a745 !important; /* Verde éxito */
+    color: white !important;             /* Texto blanco */
+    font-weight: bold;                   /* Texto en negrita */
+    border-radius: 8px;                  /* Bordes redondeados */
+    padding: 12px;                       /* Espaciado interno */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+  }
+  
+  .toast-success .toast-title {
+    font-size: 16px;                     /* Tamaño del título */
+  }
+  
+  .toast-success .toast-message {
+    font-size: 14px;                     /* Tamaño del mensaje */
+  }

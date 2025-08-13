@@ -1,0 +1,29 @@
+<div *ngIf="isLoading; else loadedContent" class="flex items-center justify-center min-h-screen">
+  <!-- Spinner de carga -->
+  <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+</div>
+
+<ng-template #loadedContent>
+  <div class="flex flex-col min-h-screen">
+    <app-header [rolUsuario]="rolUsuario" (roleCleared)="updateRole('')"></app-header>
+
+
+    <!-- Contenido principal -->
+    <main class="flex-grow bg-white">
+      <router-outlet></router-outlet>
+    </main>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
+  </div>
+</ng-template>
+
+<!-- Modal de sesión expirada -->
+<app-modal
+  *ngIf="isAuthenticated && isTokenExpired"
+  [title]="'Sesión Expirada'"
+  [message]="'Tu sesión ha expirado. Por favor, inicia sesión nuevamente.'"
+  [confirmText]="'Aceptar'"
+  [isVisible]="isTokenExpired"
+  (onConfirm)="handleLogout()">
+</app-modal>
