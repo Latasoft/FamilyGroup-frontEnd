@@ -55,11 +55,8 @@ export class PropertyService {
 
   //HttpParams para manejar los parámetros de paginación, y evitar contenido de paginación en URL, cuando no hay filtros
   getAllProperties(page: number, limit: number): Observable<any> {
-    let params = new HttpParams()
-      .set('page', page.toString())
-      .set('limit', limit.toString());
-    
-    return this.http.get<any>(`${this.API_URL}`, { params });
+    const url = `${this.API_URL}?page=${encodeURIComponent(page.toString())}&limit=${encodeURIComponent(limit.toString())}`;
+    return this.http.get<any>(url);
   }
 
   getAllPropertiesIcludeInactive(page: number, limit: number): Observable<any> {
